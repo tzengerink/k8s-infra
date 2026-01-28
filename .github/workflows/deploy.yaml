@@ -32,7 +32,6 @@ jobs:
           kubectl apply -f ./gateway/gateway-class.yaml
         fi
         kubectl apply -f ./gateway/gateway.yaml
-        kubectl apply -f ./gateway/http-route.yaml
     - name: Apply project manifests
       run: |
         export KUBECONFIG=kubeconfig.yaml
