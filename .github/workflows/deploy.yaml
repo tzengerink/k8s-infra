@@ -21,16 +21,26 @@ jobs:
         echo "${{ secrets.KUBE_CONFIG }}" > kubeconfig.yaml
         export KUBECONFIG=kubeconfig.yaml
         kubectl cluster-info
-    - name: Apply ingress manifests
+    - name: Create prd namespace if not exists
       run: |
         export KUBECONFIG=kubeconfig.yaml
-        kubectl apply -f ./ingress/ --namespace=prd
+        kubectl create namespace prd --dry-run=client -o yaml | kubectl apply -f -
+    - name: Apply gateway manifests
+      run: |
+        export KUBECONFIG=kubeconfig.yaml
+        if ! kubectl get gatewayclass nginx &> /dev/null; then
+          kubectl apply -f ./gateway/gateway-class.yaml
+        fi
+        kubectl apply -f ./gateway/gateway.yaml
+        kubectl apply -f ./gateway/http-route.yaml
     - name: Apply project manifests
       run: |
         export KUBECONFIG=kubeconfig.yaml
-        find ./projects -name "*.yml" -exec kubectl apply -f {} --namespace=prd \;
+        find ./projects -name "*.yaml" -exec kubectl apply -f {} --namespace=prd \;
     - name: Verify deployment
       run: |
         export KUBECONFIG=kubeconfig.yaml
         kubectl get all -n prd
-        kubectl get ingress -n prd
+        kubectl get gatewayclass -A
+        kubectl get gateway -n prd
+        kubectl get httproute -n prd
