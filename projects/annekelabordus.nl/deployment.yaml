@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: annekelabordus-nl-app
+  namespace: prd
+  labels:
+    app: annekelabordus-nl-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: annekelabordus-nl-app
+  template:
+    metadata:
+      labels:
+        app: annekelabordus-nl-app
+    spec:
+      containers:
+      - name: annekelabordus-nl-app
+        image: teunzengerink/annekelabordus.nl:main
+        ports:
+        - containerPort: 3000
+        env:
+        - name: NODE_ENV
+          value: "production"

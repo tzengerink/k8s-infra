@@ -1,0 +1,18 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: annekelabordus-nl-route
+  namespace: prd
+spec:
+  parentRefs:
+  - name: shared-gateway
+  hostnames:
+  - "annekelabordus.nl"
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /
+    backendRefs:
+    - name: annekelabordus-nl-service
+      port: 80
