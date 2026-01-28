@@ -4,7 +4,7 @@ metadata:
   name: teun-zengerink-com-service
   namespace: prd
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: teun-zengerink-com-app
   ports:
