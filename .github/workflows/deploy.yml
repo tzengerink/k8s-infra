@@ -1,0 +1,36 @@
+name: Deploy to Production
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+env:
+  KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
+jobs:
+  deploy:
+    name: Deploy to prd namespace
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Set up kubectl
+      uses: azure/setup-kubectl@v3
+      with:
+        version: 'latest'
+    - name: Configure Kubernetes cluster access
+      run: |
+        echo "${{ secrets.KUBE_CONFIG }}" > kubeconfig.yaml
+        export KUBECONFIG=kubeconfig.yaml
+        kubectl cluster-info
+    - name: Apply ingress manifests
+      run: |
+        export KUBECONFIG=kubeconfig.yaml
+        kubectl apply -f ./ingress/ --namespace=prd
+    - name: Apply project manifests
+      run: |
+        export KUBECONFIG=kubeconfig.yaml
+        find ./projects -name "*.yml" -exec kubectl apply -f {} --namespace=prd \;
+    - name: Verify deployment
+      run: |
+        export KUBECONFIG=kubeconfig.yaml
+        kubectl get all -n prd
+        kubectl get ingress -n prd

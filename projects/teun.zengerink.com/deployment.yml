@@ -1,12 +1,25 @@
-apiVersion: v1
-kind: Service
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: teun-zengerink-com-service
-spec:
-  type: LoadBalancer
-  selector:
+  name: teun-zengerink-com-app
+  namespace: prd
+  labels:
     app: teun-zengerink-com-app
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 3000
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: teun-zengerink-com-app
+  template:
+    metadata:
+      labels:
+        app: teun-zengerink-com-app
+    spec:
+      containers:
+      - name: teun-zengerink-com-app
+        image: teunzengerink/teun.zengerink.com:main
+        ports:
+        - containerPort: 3000
+        env:
+        - name: NODE_ENV
+          value: "production"
