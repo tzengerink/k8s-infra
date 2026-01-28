@@ -9,3 +9,9 @@ As a gateway [nginx-gateway-fabric](https://github.com/nginx/nginx-gateway-fabri
 ## Configuration
 
 For the configuration, the [documentation of the Gateway API](https://gateway-api.sigs.k8s.io/) can be used as a reference.
+
+## Manual deploy
+
+Use the GitHub UI to trigger the workflow, or use the CLI:
+
+> gh workflow run deploy.yaml --ref main
