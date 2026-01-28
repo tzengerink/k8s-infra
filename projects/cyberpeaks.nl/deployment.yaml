@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cyberpeaks-nl-app
+  namespace: prd
+  labels:
+    app: cyberpeaks-nl-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cyberpeaks-nl-app
+  template:
+    metadata:
+      labels:
+        app: cyberpeaks-nl-app
+    spec:
+      containers:
+      - name: cyberpeaks-nl-app
+        image: teunzengerink/cyberpeaks.nl:main
+        ports:
+        - containerPort: 3000
+        env:
+        - name: NODE_ENV
+          value: "production"
