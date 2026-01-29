@@ -1,0 +1,14 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: gateway-tls
+  namespace: prd
+spec:
+  secretName: gateway-tls
+  issuerRef:
+    name: letsencrypt-issuer
+    kind: Issuer
+  dnsNames:
+  - "teun.zengerink.com"
+  # - "cyberpeaks.nl"
+  # - "annekelabordus.nl"
