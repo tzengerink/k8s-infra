@@ -8,7 +8,13 @@ As a gateway [nginx-gateway-fabric](https://github.com/nginx/nginx-gateway-fabri
 
 ## Configuration
 
+### Gateway
+
 For the configuration, the [documentation of the Gateway API](https://gateway-api.sigs.k8s.io/) can be used as a reference.
+
+### SSL
+
+For the SSL certificates, [cert-manager](https://cert-manager.io/docs/configuration/acme/) is used.
 
 ## Manual deploy
 
