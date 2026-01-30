@@ -1,10 +1,10 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: gateway-tls
+  name: multi-domain-tls
   namespace: prd
 spec:
-  secretName: gateway-tls
+  secretName: multi-domain-tls
   issuerRef:
     name: letsencrypt-issuer
     kind: Issuer

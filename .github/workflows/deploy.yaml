@@ -25,13 +25,15 @@ jobs:
       run: |
         export KUBECONFIG=kubeconfig.yaml
         kubectl create namespace prd --dry-run=client -o yaml | kubectl apply -f -
-    - name: Apply gateway manifests
+    - name: Apply ingress manifests
       run: |
         export KUBECONFIG=kubeconfig.yaml
-        if ! kubectl get gatewayclass nginx &> /dev/null; then
-          kubectl apply -f ./gateway/gateway-class.yaml
+        if ! kubectl get ingressclass nginx &> /dev/null; then
+          kubectl apply -f ./ingress/ingress-class.yaml
         fi
-        kubectl apply -f ./gateway/gateway.yaml
+        kubectl apply -f ./ingress/ingress.yaml
+        kubectl apply -f ./ingress/letsencrypt-issuer.yaml
+        kubectl apply -f ./ingress/certificate.yaml
     - name: Apply project manifests
       run: |
         export KUBECONFIG=kubeconfig.yaml
@@ -40,6 +42,9 @@ jobs:
       run: |
         export KUBECONFIG=kubeconfig.yaml
         kubectl get all -n prd
-        kubectl get gatewayclass -A
-        kubectl get gateway -n prd
-        kubectl get httproute -n prd
+        kubectl get ingressclass -A
+        kubectl get ingress -n prd
+        kubectl get certificates -n prd
+        kubectl get issuer -n prd
+        kubectl get secrets -n prd | grep tls
+        kubectl describe certificate multi-domain-tls -n prd

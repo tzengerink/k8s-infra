@@ -1,0 +1,46 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: multi-domain-ingress
+  namespace: prd
+  annotations:
+    cert-manager.io/issuer: "letsencrypt-issuer"
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - teun.zengerink.com
+    - cyberpeaks.nl
+    - annekelabordus.nl
+    secretName: multi-domain-tls
+  rules:
+  - host: teun.zengerink.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: teun-zengerink-com-service
+            port:
+              number: 80
+  - host: cyberpeaks.nl
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: cyberpeaks-nl-service
+            port:
+              number: 80
+  - host: annekelabordus.nl
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: annekelabordus-nl-service
+            port:
+              number: 80

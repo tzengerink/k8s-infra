@@ -8,13 +8,22 @@ As a gateway [nginx-gateway-fabric](https://github.com/nginx/nginx-gateway-fabri
 
 ## Configuration
 
-### Gateway
+A couple of steps are needed to install the ingress controller and the certificate manager in the cluster.
 
-For the configuration, the [documentation of the Gateway API](https://gateway-api.sigs.k8s.io/) can be used as a reference.
+### Install ingress-nginx
 
-### SSL
+> kubectl create ns ingress-nginx
+> kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.14.2/deploy/static/provider/cloud/deploy.yaml
 
-For the SSL certificates, [cert-manager](https://cert-manager.io/docs/configuration/acme/) is used.
+For more info see the [official repository](https://github.com/kubernetes/ingress-nginx)
+
+### Install cert-manager
+
+> kubectl create namespace cert-manager
+> kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.19.2/cert-manager.crds.yaml
+> kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.19.2/cert-manager.yaml
+
+For more info see the [official repository](https://github.com/cert-manager/cert-manager)
 
 ## Manual deploy
 
