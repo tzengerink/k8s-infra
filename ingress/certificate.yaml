@@ -10,5 +10,5 @@ spec:
     kind: Issuer
   dnsNames:
   - "teun.zengerink.com"
-  # - "cyberpeaks.nl"
-  # - "annekelabordus.nl"
+  - "www.cyberpeaks.nl"
+  # - "www.annekelabordus.nl"

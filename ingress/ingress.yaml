@@ -11,8 +11,8 @@ spec:
   tls:
   - hosts:
     - teun.zengerink.com
-    #- cyberpeaks.nl
-    #- annekelabordus.nl
+    - www.cyberpeaks.nl
+    #- www.annekelabordus.nl
     secretName: multi-domain-tls
   rules:
   - host: teun.zengerink.com
@@ -25,7 +25,7 @@ spec:
             name: teun-zengerink-com-service
             port:
               number: 80
-  - host: cyberpeaks.nl
+  - host: www.cyberpeaks.nl
     http:
       paths:
       - path: /
@@ -35,7 +35,7 @@ spec:
             name: cyberpeaks-nl-service
             port:
               number: 80
-  - host: annekelabordus.nl
+  - host: www.annekelabordus.nl
     http:
       paths:
       - path: /
