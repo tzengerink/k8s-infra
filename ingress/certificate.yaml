@@ -11,4 +11,4 @@ spec:
   dnsNames:
   - "teun.zengerink.com"
   - "www.cyberpeaks.nl"
-  # - "www.annekelabordus.nl"
+  - "www.annekelabordus.nl"

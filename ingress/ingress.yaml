@@ -12,7 +12,7 @@ spec:
   - hosts:
     - teun.zengerink.com
     - www.cyberpeaks.nl
-    #- www.annekelabordus.nl
+    - www.annekelabordus.nl
     secretName: multi-domain-tls
   rules:
   - host: teun.zengerink.com
