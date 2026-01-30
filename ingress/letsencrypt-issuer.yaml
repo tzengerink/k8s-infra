@@ -15,8 +15,7 @@ metadata:
   namespace: prd
 spec:
   acme:
-    # TODO: Change to production server when ready
-    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    server: https://acme-v02.api.letsencrypt.org/directory
     email: letsencrypt.font909@passmail.net
     privateKeySecretRef:
       name: letsencrypt-issuer-secret
