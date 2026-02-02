@@ -15,6 +15,8 @@ spec:
       labels:
         app: pgi-zengerink-com-app
     spec:
+      imagePullSecrets:
+       - name: dockerhub-secret
       containers:
       - name: pgi-zengerink-com-app
         image: teunzengerink/python-degiro-insights:main
@@ -23,3 +25,18 @@ spec:
         env:
         - name: NODE_ENV
           value: "production"
+        - name: FASTAPI_JWT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: pgi-zengerink-com-secret
+              key: FASTAPI_JWT_SECRET
+        - name: FASTAPI_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: pgi-zengerink-com-secret
+              key: FASTAPI_USERNAME
+        - name: FASTAPI_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: pgi-zengerink-com-secret
+              key: FASTAPI_PASSWORD
