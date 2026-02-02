@@ -11,6 +11,7 @@ spec:
   tls:
   - hosts:
     - teun.zengerink.com
+    - pgi.zengerink.com
     - www.cyberpeaks.nl
     - www.annekelabordus.nl
     secretName: multi-domain-tls
