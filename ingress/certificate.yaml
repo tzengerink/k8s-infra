@@ -10,6 +10,6 @@ spec:
     kind: Issuer
   dnsNames:
   - "teun.zengerink.com"
+  - "pgi.zengerink.com"
   - "www.cyberpeaks.nl"
   - "www.annekelabordus.nl"
-  # "pgi.zengerink.com"
