@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pgi-zengerink-com-app
+  namespace: prd
+  labels:
+    app: pgi-zengerink-com-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pgi-zengerink-com-app
+  template:
+    metadata:
+      labels:
+        app: pgi-zengerink-com-app
+    spec:
+      containers:
+      - name: pgi-zengerink-com-app
+        image: teunzengerink/python-degiro-insights:main
+        ports:
+        - containerPort: 8000
+        env:
+        - name: NODE_ENV
+          value: "production"
