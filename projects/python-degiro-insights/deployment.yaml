@@ -20,6 +20,7 @@ spec:
       containers:
       - name: pgi-zengerink-com-app
         image: teunzengerink/python-degiro-insights:main
+        imagePullPolicy: Always
         ports:
         - containerPort: 8000
         env:

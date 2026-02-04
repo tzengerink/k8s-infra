@@ -18,6 +18,7 @@ spec:
       containers:
       - name: cyberpeaks-nl-app
         image: teunzengerink/cyberpeaks.nl:main
+        imagePullPolicy: Always
         ports:
         - containerPort: 3000
         livenessProbe:
