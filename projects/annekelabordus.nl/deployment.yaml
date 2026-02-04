@@ -18,6 +18,7 @@ spec:
       containers:
       - name: annekelabordus-nl-app
         image: teunzengerink/annekelabordus.nl:main
+        imagePullPolicy: Always
         ports:
         - containerPort: 3000
         livenessProbe:

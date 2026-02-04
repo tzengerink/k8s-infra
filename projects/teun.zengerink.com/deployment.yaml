@@ -18,6 +18,7 @@ spec:
       containers:
       - name: teun-zengerink-com-app
         image: teunzengerink/teun.zengerink.com:main
+        imagePullPolicy: Always
         ports:
         - containerPort: 3000
         livenessProbe:
