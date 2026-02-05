@@ -38,6 +38,10 @@ jobs:
       run: |
         export KUBECONFIG=kubeconfig.yaml
         find ./projects -name "*.yaml" -exec kubectl apply -f {} --namespace=prd \;
+    - name: Rollout restart all deployments
+      run: |
+        export KUBECONFIG=kubeconfig.yaml
+        kubectl rollout restart deployment --namespace=prd
     - name: Verify deployment
       run: |
         export KUBECONFIG=kubeconfig.yaml
